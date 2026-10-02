@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Crop Disease Detector | IBM SkillsBuild Internship</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f7f6; margin: 0; padding: 20px; }
+        .card { max-width: 600px; margin: 40px auto; background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        h1 { color: #0f62fe; text-align: center; font-size: 24px; margin-bottom: 5px; }
+        p.subtitle { text-align: center; color: #525252; font-size: 14px; margin-top: 0; }
+        .dropzone { border: 2px dashed #0f62fe; padding: 30px; text-align: center; border-radius: 8px; background: #edf5ff; margin-top: 20px; }
+        input[type="file"] { margin-bottom: 15px; }
+        .btn { background: #0f62fe; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; }
+        .btn:hover { background: #0043ce; }
+        .result-panel { margin-top: 25px; padding: 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; }
+        .result-panel h3 { margin-top: 0; color: #166534; }
+        .preview-image { width: 100%; max-height: 250px; object-fit: contain; border-radius: 8px; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Smart Crop Health Identifier</h1>
+        <p class="subtitle">IBM SkillsBuild & AICTE Virtual Internship Project</p>
+        
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <div class="dropzone">
+                <input type="file" name="file" accept="image/*" required><br>
+                <button type="submit" class="btn">Analyze Crop Image</button>
+            </div>
+        </form>
+
+        {% if label %}
+        <div class="result-panel">
+            <h3>Diagnostic Results</h3>
+            <p><strong>Predicted Disease:</strong> {{ label }}</p>
+            <p><strong>Confidence Score:</strong> {{ confidence }}%</p>
+            <p><strong>Remediation Step:</strong> {{ remedy }}</p>
+            {% if image_path %}
+                <img src="{{ image_path }}" class="preview-image" alt="Uploaded Leaf Preview">
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
